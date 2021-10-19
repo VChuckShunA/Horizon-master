@@ -2,7 +2,7 @@
 
 
 #include "Clothing.h"
-
+#include "HorizonCharacter.h"
 AClothing::AClothing()
 {
 	ClothingMesh = CreateDefaultSubobject<USkeletalMeshComponent>(FName("ClothingMesh"));

@@ -21,7 +21,7 @@ enum class EClothingType : uint8
 	ECT_MAX UMETA(DisplayName="DefaultMAX")
 
 };
-UCLASS(Abstract, BlueprintType, Blueprintable, CLASS_EditInlineNew, CLASS_DefaultToInstanced)
+UCLASS()//Abstract, BlueprintType, Blueprintable, EditInlineNew, DefaultToInstanced)
 class HORIZON_API AClothing : public AItem
 {
 	GENERATED_BODY()
@@ -40,12 +40,12 @@ class HORIZON_API AClothing : public AItem
 
 	//Item Mesh picking it off the ground
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Clothing")
-	class UStaticMesh* PickupMesh;
+		class UStaticMesh* PickupMesh;
 
 
 	//Item Thumbnail
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Clothing")
-	class UTexure2D* Thumbnail;
+		class UTexture2D* Thumbnail;
 
 
 	//Item Display Name
@@ -61,6 +61,6 @@ class HORIZON_API AClothing : public AItem
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Clothing", meta = (ClampMin = 0.0))
 	float Weight;
 
-	UPROPERTY()
-		class UInventoryComponent* OwningInventory;
+	//UPROPERTY()
+	//class UInventoryComponent* OwningInventory;
 };
