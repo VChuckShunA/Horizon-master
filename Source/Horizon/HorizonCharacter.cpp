@@ -12,7 +12,7 @@
 #include "Item.h"
 #include "GameFramework/PhysicsVolume.h"
 #include "Net/UnrealNetwork.h"
-
+#include "TimerManager.h"
 
 AHorizonCharacter::AHorizonCharacter() :
 MaxHealth(100.f),
@@ -55,6 +55,13 @@ Coins(100)
 	TopMesh->SetupAttachment(GetMesh());
 	BottomMesh=CreateDefaultSubobject<USkeletalMeshComponent>(FName("BottomMesh"));
 	BottomMesh->SetupAttachment(GetMesh());
+	
+	//Initialize Hunger/Thirst system
+	Food = 100.f;
+	Water = 100.f;
+	MaxFood = 100.f;
+	MaxWater = 100.f;
+	FoodWaterDrainRate = 2.f;
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
@@ -275,6 +282,17 @@ void AHorizonCharacter::StopSwimming()
 }
 
 
+void AHorizonCharacter::DrainFoodWater()
+{
+	Food = Food - 10.f;
+	Water = Water - 10.f;
+	if (Food <= 0 || Water <= 0)
+	{
+		//Destroy();
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Thirst/Hunger has killed the player!"));
+	}
+}
+
 void AHorizonCharacter::BeginPlay()
 {
 	Super::BeginPlay();
@@ -283,6 +301,9 @@ void AHorizonCharacter::BeginPlay()
 
 	TopMesh->SetMasterPoseComponent(GetMesh());
 	BottomMesh->SetMasterPoseComponent(GetMesh());
+
+	//Hunger/Thirst Initialization;
+	GetWorldTimerManager().SetTimer(UnusedHandle, this, &AHorizonCharacter::DrainFoodWater, FoodWaterDrainRate, true, 1.f);
 }
 
 

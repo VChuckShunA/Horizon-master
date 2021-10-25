@@ -28,5 +28,7 @@ public:
 
 	virtual void Use(AHorizonCharacter* Character) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int Type;
 
 };

@@ -78,6 +78,23 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Clothing")
 	USkeletalMeshComponent* BottomMesh;
+
+	//Thirst and Hunger system
+	UPROPERTY(EditAnywhere) float Water;
+
+	UPROPERTY(EditAnywhere) float Food;
+
+	UPROPERTY(EditAnywhere) float MaxWater;
+
+	UPROPERTY(EditAnywhere) float MaxFood;
+
+	UPROPERTY()
+		FTimerHandle UnusedHandle;
+
+	UPROPERTY(EditAnywhere) float FoodWaterDrainRate;
+
+	UFUNCTION(BlueprintCallable)
+		void DrainFoodWater();
 	
 private:
 

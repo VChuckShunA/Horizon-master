@@ -1,40 +1,29 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "DayNightCycle.h"
+#include "Checkpoint.h"
 
 // Sets default values
-ADayNightCycle::ADayNightCycle()
+ACheckpoint::ACheckpoint()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SceneComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Scene"));
+	RootComponent = SceneComp;
+
 }
 
 // Called when the game starts or when spawned
-void ADayNightCycle::BeginPlay()
+void ACheckpoint::BeginPlay()
 {
 	Super::BeginPlay();
-
-	
 	
 }
 
 // Called every frame
-void ADayNightCycle::Tick(float DeltaTime)
+void ACheckpoint::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	if (lightSource)
-	{
-		lightSource->AddActorLocalRotation(FRotator((DeltaTime * turnRate), 0, 0));
-	}
-
-	if (sun)
-	{
-		FOutputDeviceNull ar;
-		sun->CallFunctionByNameWithArguments(TEXT("UpdateSUnDirection"), ar, NULL, true);
-	}
-
 }
 

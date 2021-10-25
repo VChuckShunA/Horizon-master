@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "WheeledVehicle.h"
+#include "RaceController.h"
 #include "VehiclePawn.generated.h"
 
 /**
@@ -16,7 +17,7 @@ class HORIZON_API AVehiclePawn : public AWheeledVehicle
 
 public: 
 	AVehiclePawn();
-
+	AVehiclePawn * VehiclePawn;
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)override;
