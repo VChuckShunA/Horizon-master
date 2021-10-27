@@ -60,6 +60,8 @@ AVehiclePawn::AVehiclePawn()
 
 }
 
+
+
 void AVehiclePawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

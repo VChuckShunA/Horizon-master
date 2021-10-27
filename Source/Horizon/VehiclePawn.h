@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "WheeledVehicle.h"
-#include "RaceController.h"
 #include "VehiclePawn.generated.h"
 
 /**
@@ -36,6 +35,7 @@ public:
 
 	//Update in air physics
 	void UpdateInAirControls(float DeltaTime);
+
 
 protected: 
 	//Spring arm that will offset the camera
